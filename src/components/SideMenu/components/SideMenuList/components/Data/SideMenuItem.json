@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Dashboard",
+        "icon": "ChartBarIcon",
+        "url": "/"
+    },
+    {
+        "id": 2,
+        "name": "Membros",
+        "icon": "UserGroupIcon",
+        "url": "/members"
+    },
+    {
+        "id": 3,
+        "name": "Pagamentos",
+        "icon": "BanknotesIcon",
+        "url": "/payment"
+    },
+    {
+        "id": 4,
+        "name": "Planos",
+        "icon": "BoltIcon",
+        "url": "/plans"
+    }
+]

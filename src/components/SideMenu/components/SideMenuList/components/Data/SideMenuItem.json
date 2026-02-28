@@ -3,7 +3,7 @@
         "id": 1,
         "name": "Dashboard",
         "icon": "ChartBarIcon",
-        "url": "/"
+        "url": "/dashboard"
     },
     {
         "id": 2,

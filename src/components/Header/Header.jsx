@@ -8,7 +8,7 @@ const Header = () => {
   const authUser = user?.data;
 
   return (
-    <div className="flex items-center justify-end h-20  w-full absolute p-5 bg-gray-900 border-b-2 border-b-yellow-500/50">
+    <div className="flex items-center justify-end h-20  w-full absolute p-5 bg-[#1A1A1A]">
       <NavLink to={!authUser ? "/login" : "/"}>
         <h1 className="text-white">{authUser?.name}</h1>
         <p className="text-gray-400 capitalize">{(authUser?.role)}</p>

@@ -16,10 +16,8 @@ function App() {
   const { user } = useContext(AuthContext);
   const authUser = user?.data;
 
-  console.log(user)
-
   return (
-    <div className="flex justify-between bg-linear-to-r from-slate-900 to-slate-700">
+    <div className="flex justify-between bg-[#0B0B0B]">
       <SideMenu />
       <Header />
       <Routes>

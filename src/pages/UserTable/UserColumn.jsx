@@ -1,12 +1,14 @@
 import React from "react";
 import { api } from "../../services/api";
+import { TrashIcon, PencilIcon } from "@heroicons/react/24/outline";
+import { Link } from "react-router-dom";
 
-const UserColumn = ({ user }) => {
+const UserColumn = ({ user, attUsers }) => {
 
-  const deleteUser = async (data) => {
+  const deleteUser = async (id) => {
     try {
-      const res = await api.delete("/users/delete", data);
-      console.log(res);
+      await api.delete(`/users/${id}`);
+      attUsers(prev => prev.filter(user => user.id !== id));
     } catch (error) {
       console.error("Error", error);
     }
@@ -15,15 +17,15 @@ const UserColumn = ({ user }) => {
 
   return (
     <tr key={user.id} className="hover:bg-[#202020] transition-colors cursor-pointer">
-      <td className="px-4 py-3 font-medium">
+      <td className="px-4 py-3 font-medium ">
         <p className="text-left font-extrabold capitalize text-white">
           {user.name}
         </p>
       </td>
-      <td className="px-4 py-3 text-gray-400">
+      <td className="px-4 py-3 text-gray-400 ">
         <p className="text-gray-400/50 font-semibold">{user.email}</p>
       </td>
-      <td className="px-4 py-3">
+      <td className="px-4 py-3 ">
         {user.role === "admin" ? (
           <p className="bg-orange-200/35 text-center p-2 border-orange-400 border rounded-2xl text-amber-500 font-bold capitalize">
             {user.role}
@@ -34,8 +36,9 @@ const UserColumn = ({ user }) => {
           </p>
         )}
       </td>
-      <td>
-        <button value={user.id} onClick={deleteUser}>Deletar</button>
+      <td className="pt-5 flex items-center justify-center gap-2">
+        <button onClick={() => deleteUser(user.id)}><TrashIcon className="w-6 text-gray-400 cursor-pointer hover:text-gray-600"/></button>
+        <Link to={`/users/edit/${user.id}`}><PencilIcon className="w-6 text-gray-400 cursor-pointer hover:text-gray-600"/></Link>
       </td>
     </tr>
   );

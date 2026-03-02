@@ -32,7 +32,7 @@ const LoginForm = () => {
 
   return (
     <form
-      className="bg-linear-to-tr from-zinc-800 to-gray-900 rounded-2xl border-2 border-gray-950/20 flex flex-col items-center justify-evenly h-130 w-96 p-2"
+      className="bg-[#1A1A1A] rounded-2xl border-2 border-gray-950/20 flex flex-col items-center justify-evenly h-130 w-96 p-2"
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="flex flex-col items-center justify-center w-full p-2 gap-4">

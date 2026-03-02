@@ -10,7 +10,7 @@ const Header = () => {
   return (
     <div className="flex items-center justify-end h-20  w-full absolute p-5 bg-[#1A1A1A]">
       <NavLink to={!authUser ? "/login" : "/"}>
-        <h1 className="text-white">{authUser?.name}</h1>
+        <h1 className="text-white">{authUser?.name ? authUser?.name : "Login"}</h1>
         <p className="text-gray-400 capitalize">{(authUser?.role)}</p>
       </NavLink>
     </div>

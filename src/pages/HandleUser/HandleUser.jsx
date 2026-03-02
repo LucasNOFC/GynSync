@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { api } from "../../services/api";
 
-const CreateUser = () => {
+const HandleUser = () => {
   const [success, setSuccess] = useState(false);
+  const [user, setUser] = useState([]);
+
+  
 
   const {
     register,
@@ -152,4 +155,4 @@ const CreateUser = () => {
   );
 };
 
-export default CreateUser;
+export default HandleUser;

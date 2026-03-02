@@ -41,7 +41,7 @@ const UserTable = () => {
 
           <tbody className="divide-y">
             {users.map((user) => (
-              <UserColumn user={user}/>
+              <UserColumn user={user} key={user.id} attUsers={setUsers}/>
             ))}
           </tbody>
         </table>

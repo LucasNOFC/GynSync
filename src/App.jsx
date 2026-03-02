@@ -11,6 +11,7 @@ import Plans from "./pages/Plans/Plans";
 import Settings from "./pages/Settings/Settings";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
+import HandleUser from "./pages/HandleUser/HandleUser";
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -30,6 +31,7 @@ function App() {
           <Route path="/payment" element={<Payment />} />
           <Route path="/plans" element={<Plans />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/users/edit/:id" element={<HandleUser/>} />
         </Route>
       </Routes>
     </div>

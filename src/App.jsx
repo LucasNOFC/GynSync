@@ -18,24 +18,34 @@ function App() {
   const authUser = user?.data;
 
   return (
-    <div className="flex justify-between bg-[#0B0B0B]">
+    <div className="flex min-h-screen bg-[#0B0B0B]">
       <SideMenu />
-      <Header />
-      <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/login" element={(!authUser ? <Login /> : <Index/>)} />
-
-        <Route element={<PrivateRoute />}>
-          <Route path="/dashboard" element={<Hero />} />
-          <Route path="/members" element={<Members />} />
-          <Route path="/payment" element={<Payment />} />
-          <Route path="/plans" element={<Plans />} />
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/user/create" element={<HandleUser/>} />
-          <Route path="/users/edit/:id" element={<HandleUser/>} />
-          <Route path="*" element={<div className="m-auto text-4xl font-bold text-white">404 - Página não encontrada</div>} />
-        </Route>
-      </Routes>
+      <div className="flex-1 flex flex-col ml-64">
+        <Header />
+       <main className="flex-1 p-6">
+         <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/login" element={!authUser ? <Login /> : <Index />} />
+            <Route element={<PrivateRoute />}>
+              <Route path="/dashboard" element={<Hero />} />
+              <Route path="/members" element={<Members />} />
+              <Route path="/payment" element={<Payment />} />
+              <Route path="/plans" element={<Plans />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="/user/create" element={<HandleUser />} />
+              <Route path="/users/edit/:id" element={<HandleUser />} />
+              <Route
+                path="*"
+                element={
+                  <div className="m-auto text-4xl font-bold text-white">
+                    404 - Página não encontrada
+                  </div>
+                }
+              />
+            </Route>
+          </Routes>
+       </main>
+      </div>
     </div>
   );
 }

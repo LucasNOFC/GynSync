@@ -8,11 +8,11 @@ const Header = () => {
   const authUser = user?.data;
 
   return (
-    <div className="flex items-center justify-end h-20  w-full absolute p-5 bg-[#1A1A1A]">
-      <NavLink to={!authUser ? "/login" : "/"}>
-        <h1 className="text-white">{authUser?.name ? authUser?.name : "Login"}</h1>
-        <p className="text-gray-400 capitalize">{(authUser?.role)}</p>
-      </NavLink>
+    <div className="h-20 w-full bg-[#1A1A1A] border-b border-zinc-800 flex items-center justify-end px-6">
+      <div className="text-right" to={!authUser ? "/login" : "/"}>
+        <h1 className="text-white font-semibold leading-tight">{authUser?.name ? authUser?.name : "Login"}</h1>
+        <p className="text-gray-400 terxt-sm capitalize">{(authUser?.role)}</p>
+      </div>
     </div>
   );
 };

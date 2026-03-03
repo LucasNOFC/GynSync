@@ -1,15 +1,12 @@
 import React from "react";
 import SideMenuLogo from "./components/SideMenuLogo/SideMenuLogo";
 import SideMenuList from "./components/SideMenuList/SideMenuList";
-import SideMenuFooter from "./components/SideMenuFooter/SideMenuFooter";
-
 const SideMenu = () => {
   return (
-    <div className="bg-[#1A1A1A] h-screen w-72 p-5 flex flex-col items-center justify-between relative z-1 ">
+    <aside className="fixed left-0 top-0 h-screen bg-[#1A1A1A] flex flex-col border-r border-zinc-800 ">
       <SideMenuLogo />
       <SideMenuList />
-        <SideMenuFooter />
-    </div>
+    </aside>
   );
 };
 

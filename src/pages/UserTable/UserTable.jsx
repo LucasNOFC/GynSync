@@ -1,17 +1,39 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { api } from "../../services/api";
 import UserColumn from "./UserColumn";
 
-const UserTable = () => {
+const UserTable = ({ getUsers, getAdmins }) => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const getGroup = () => {
+      let countUser = 0;
+      let countAdmin = 0;
+      
+      users.forEach((userRole) => {
+        if (userRole.role === "admin") {
+          countAdmin += 1;
+        } else {
+          countUser += 1;
+        }
+      });
+
+      return { countAdmin, countUser };
+    };
+
+    const countedUsers = getGroup();
+
+    getUsers(countedUsers.countUser);
+    getAdmins(countedUsers.countAdmin);
+  }, [users, getUsers, getAdmins]);
 
   useEffect(() => {
     const loadUsers = async () => {
       try {
         const res = await api.get("/users");
         setUsers(res.data.users.data);
+
         setLoading(false);
       } catch (error) {
         console.error("Errors", error);
@@ -21,9 +43,8 @@ const UserTable = () => {
     loadUsers();
   }, []);
 
-
   if (loading) {
-    return <p className="text-white text-3xl font-semibold">Carregando...</p>
+    return <p className="text-white text-3xl font-semibold">Carregando...</p>;
   }
 
   return (
@@ -33,15 +54,19 @@ const UserTable = () => {
           <thead className="bg-[#151515] text-left text-sm font-semibold">
             <tr className="">
               <th className="px-4 py-3 font-bold text-gray-600/74">NOME</th>
-              <th className="px-4 py-3 font-bold text-gray-600/74">ENDEREÇO DE EMAIL</th>
+              <th className="px-4 py-3 font-bold text-gray-600/74">
+                ENDEREÇO DE EMAIL
+              </th>
               <th className="px-4 py-3 font-bold text-gray-600/74">CARGO</th>
-              <th className="px-4 py-3 font-bold text-gray-600/74">CONTROLES</th>
+              <th className="px-4 py-3 font-bold text-gray-600/74">
+                CONTROLES
+              </th>
             </tr>
           </thead>
 
           <tbody className="divide-y">
             {users.map((user) => (
-              <UserColumn user={user} key={user.id} attUsers={setUsers}/>
+              <UserColumn user={user} key={user.id} attUsers={setUsers} />
             ))}
           </tbody>
         </table>

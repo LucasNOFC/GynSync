@@ -31,7 +31,9 @@ function App() {
           <Route path="/payment" element={<Payment />} />
           <Route path="/plans" element={<Plans />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/user/create" element={<HandleUser/>} />
           <Route path="/users/edit/:id" element={<HandleUser/>} />
+          <Route path="*" element={<div className="m-auto text-4xl font-bold text-white">404 - Página não encontrada</div>} />
         </Route>
       </Routes>
     </div>

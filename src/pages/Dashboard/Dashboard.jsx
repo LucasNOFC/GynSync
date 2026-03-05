@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   LineChart,
   Line,
@@ -16,8 +16,8 @@ import {
   CalendarDaysIcon,
 } from "@heroicons/react/24/solid";
 
-const Index = () => {
-  const [error, setError] = useState([]);
+const Dashboard = () => {
+  const [error, setError] = useState(false);
   const [data, setData] = useState([]);
   const [membersInfo, setMembersInfo] = useState([]);
 
@@ -35,11 +35,13 @@ const Index = () => {
     getMembers();
   }, []);
 
-  console.log(membersInfo);
+  if (error) {
+    return <h1 className="text-4xl text-white m-auto font-bold">{error}</h1>;
+  }
 
   return (
-    <div className="text-white w-full h-screen flex justify-center items-center">
-      <div className="m-5 w-full p-5 h-full flex flex-col gap-3">
+    <div className="text-white w-full flex justify-center items-center">
+      <div className="m-5 w-full p-4 h-full flex flex-col gap-3">
         <h1 className="text-white text-4xl font-bold">Dashboard Visão Geral</h1>
         <p className="text-gray-200 font-semibold">
           Monitore a performace de sua empresa e o ciclo de vida dos clientes
@@ -122,4 +124,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Dashboard;

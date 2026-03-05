@@ -4,44 +4,52 @@ import UserColumn from "./UserColumn";
 
 const UserTable = ({ getUsers, getAdmins }) => {
   const [users, setUsers] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [lastPage, setLastPage] = useState(1);
   const [loading, setLoading] = useState(true);
+  const [totalUser, setTotalUser] = useState(0);
 
   useEffect(() => {
     const getGroup = () => {
-      let countUser = 0;
       let countAdmin = 0;
-      
+
       users.forEach((userRole) => {
         if (userRole.role === "admin") {
           countAdmin += 1;
-        } else {
-          countUser += 1;
         }
       });
 
-      return { countAdmin, countUser };
+      return { countAdmin };
     };
 
     const countedUsers = getGroup();
 
-    getUsers(countedUsers.countUser);
-    getAdmins(countedUsers.countAdmin);
-  }, [users, getUsers, getAdmins]);
+    getUsers?.(totalUser);
+    getAdmins?.(countedUsers.countAdmin);
+  }, [users, getUsers, getAdmins, totalUser]);
 
   useEffect(() => {
-    const loadUsers = async () => {
+    const loadUsers = async (page = 1) => {
       try {
-        const res = await api.get("/users");
+        const res = await api.get(`/users?page=${page}`);
         setUsers(res.data.users.data);
-
-        setLoading(false);
+        setTotalUser(res.data.users.total);
+        setCurrentPage(res.data.users.current_page);
+        setLastPage(res.data.users.last_page);
       } catch (error) {
         console.error("Errors", error);
+      } finally {
+        setLoading(false);
       }
     };
 
-    loadUsers();
-  }, []);
+    loadUsers(currentPage);
+  }, [currentPage]);
+
+  const handlePageChange = (page) => {
+    if (page < 1 || page > lastPage) return;
+    setCurrentPage(page);
+  };
 
   if (loading) {
     return <p className="text-white text-3xl font-semibold">Carregando...</p>;
@@ -50,15 +58,19 @@ const UserTable = ({ getUsers, getAdmins }) => {
   return (
     <div className="p-4">
       <div className="overflow-x-auto rounded-2xl shadow">
-        <table className="min-w-full bg-[#262626]">
+        <table className="bg-[#262626]">
           <thead className="bg-[#151515] text-left text-sm font-semibold">
             <tr className="">
-              <th className="px-4 py-3 font-bold text-gray-600/74">NOME</th>
-              <th className="px-4 py-3 font-bold text-gray-600/74">
+              <th className="px-4 py-3 font-bold text-gray-600/74 text-center">
+                NOME
+              </th>
+              <th className="px-4 py-3 font-bold text-gray-600/74 text-center">
                 ENDEREÇO DE EMAIL
               </th>
-              <th className="px-4 py-3 font-bold text-gray-600/74">CARGO</th>
-              <th className="px-4 py-3 font-bold text-gray-600/74">
+              <th className="px-4 py-3 font-bold text-gray-600/74 text-center">
+                CARGO
+              </th>
+              <th className="px-4 py-3 font-bold text-gray-600/74 text-center">
                 CONTROLES
               </th>
             </tr>

@@ -153,6 +153,7 @@ const HandleUser = () => {
                 {errors.email?.message}
               </span>
             </div>
+            
             <div className="flex flex-col p-2 gap-2">
               <label className="mb-2 text-gray-300 font-semibold">Senha</label>
               <input

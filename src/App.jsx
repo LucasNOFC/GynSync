@@ -1,10 +1,7 @@
 import SideMenu from "./components/SideMenu/SideMenu";
-import { Routes, Route } from "react-router-dom";
-import Hero from "./pages/Hero/Hero";
-import Members from "./pages/Members/Members";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login/Login";
 import Header from "./components/Header/Header";
-import Index from "./pages/Index/Index";
 import PrivateRoute from "./routes/PrivateRoutes";
 import Payment from "./pages/Payment/Payment";
 import Plans from "./pages/Plans/Plans";
@@ -12,6 +9,10 @@ import Settings from "./pages/Settings/Settings";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import HandleUser from "./pages/HandleUser/HandleUser";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import CreateMember from "./pages/Members/pages/CreateMember";
+import EditMember from "./pages/Members/pages/EditMember";
+import MemberList from "./pages/Members/pages/MemberList";
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -22,13 +23,26 @@ function App() {
       <SideMenu />
       <div className="flex-1 flex flex-col ml-64">
         <Header />
-       <main className="flex-1 p-6">
-         <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/login" element={!authUser ? <Login /> : <Index />} />
+        <main className="flex-1 p-6">
+          <Routes>
+            <Route
+              path="/"
+              element={
+                authUser ? (
+                  <Navigate to="/Dashboard" replace />
+                ) : (
+                  <Navigate to="/login" replace />
+                )
+              }
+            />
+            <Route
+              path="/login"
+              element={!authUser ? <Login /> : <Dashboard />}
+            />
             <Route element={<PrivateRoute />}>
-              <Route path="/dashboard" element={<Hero />} />
-              <Route path="/members" element={<Members />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/members" element={<MemberList />} />
+              <Route path="/members/edit/:id" element={<EditMember />} />
               <Route path="/payment" element={<Payment />} />
               <Route path="/plans" element={<Plans />} />
               <Route path="/settings" element={<Settings />} />
@@ -44,7 +58,7 @@ function App() {
               />
             </Route>
           </Routes>
-       </main>
+        </main>
       </div>
     </div>
   );

@@ -18,25 +18,25 @@ const UserColumn = ({ user, attUsers }) => {
   return (
     <tr key={user.id} className="hover:bg-[#202020] transition-colors cursor-pointer">
       <td className="px-4 py-3 font-medium ">
-        <p className="text-left font-extrabold capitalize text-white">
+        <p className="text-center font-extrabold capitalize text-white">
           {user.name}
         </p>
       </td>
-      <td className="px-4 py-3 text-gray-400 ">
+      <td className="px-4 py-3 text-gray-400 text-center">
         <p className="text-gray-400/50 font-semibold">{user.email}</p>
       </td>
       <td className="px-4 py-3 ">
         {user.role === "admin" ? (
-          <p className="bg-orange-200/35 text-center p-2 border-orange-400 border rounded-2xl text-amber-500 font-bold capitalize">
+          <p className="bg-orange-200/35 text-center p-2 border-orange-400 border rounded-2xl text-amber-500 font-bold capitalize ">
             {user.role}
           </p>
         ) : (
-          <p className="bg-green-300/35 text-center p-2 border-emerald-600 border rounded-2xl text-emerald-500 font-bold capitalize">
+          <p className="bg-green-300/35 text-center p-2 border-emerald-600 border rounded-2xl text-emerald-500 font-bold capitalize ">
             {user.role}
           </p>
         )}
       </td>
-      <td className="pt-5 flex items-center justify-center gap-2">
+      <td className="pt-5 flex items-center justify-center gap-2 text-center">
         <button onClick={() => deleteUser(user.id)}><TrashIcon className="w-6 text-gray-400 cursor-pointer hover:text-gray-600"/></button>
         <Link to={`/users/edit/${user.id}`}><PencilIcon className="w-6 text-gray-400 cursor-pointer hover:text-gray-600"/></Link>
       </td>

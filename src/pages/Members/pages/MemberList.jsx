@@ -52,29 +52,31 @@ const MemberList = () => {
 
   return (
     <div>
-      <div className="p-2 mb-8 flex flex-col gap-2">
-        <p className="text-white text-2xl font-bold">Membros na base</p>
-        <p className="text-gray-400 font-semibold text">Atualmente temos {countMember} registrados na academia.</p>
-      </div>
-      <MembersTable members={members} attMembers={setMembers}/>
-      <div className="mt-20">
-        <button
-          onClick={prevPage}
-          disabled={currentPage === 1}
-          className="text-white"
-        >
-          Anterior
-        </button>
-        <span className="mx-10 text-gray-400">
-          Página {currentPage} de {lastpage}
-        </span>
-        <button
-          onClick={nextPage}
-          disabled={currentPage === lastpage}
-          className="text-white"
-        >
-          Próxima
-        </button>
+      <div>
+        <div className="p-2 mb-8 flex flex-col gap-2">
+          <p className="text-white text-2xl font-bold">Membros na base</p>
+          <p className="text-gray-400 font-semibold text">Atualmente temos {countMember} registrados na academia.</p>
+        </div>
+        <MembersTable members={members} attMembers={setMembers}/>
+        <div className="mt-20">
+          <button
+            onClick={prevPage}
+            disabled={currentPage === 1}
+            className="text-white"
+          >
+            Anterior
+          </button>
+          <span className="mx-10 text-gray-400">
+            Página {currentPage} de {lastpage}
+          </span>
+          <button
+            onClick={nextPage}
+            disabled={currentPage === lastpage}
+            className="text-white"
+          >
+            Próxima
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import { PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import React, { useState } from "react";
 import { api } from "../../../services/api";
 
@@ -48,9 +48,9 @@ const MembersTable = ({ members, attMembers }) => {
               className="hover:bg-[#202020] transition-colors cursor-pointer"
             >
               <td className="px-4 py-3 font-medium ">
-                <p className="text-center font-extrabold capitalize text-white">
+                <NavLink to={`/members/page/${member.id}`} className="text-center font-extrabold capitalize text-white">
                   {member.name}
-                </p>
+                </NavLink>
               </td>
               <td className="px-4 py-3 font-medium ">
                 <p className="text-gray-400/50 font-semibold text-center">

@@ -40,8 +40,6 @@ const PageMember = () => {
     fetchMember();
   }, [id]);
 
-  console.log(member);
-
   if (loading) return <Loading />;
 
   return (

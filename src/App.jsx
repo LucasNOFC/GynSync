@@ -14,6 +14,8 @@ import CreateMember from "./pages/Members/pages/CreateMember";
 import EditMember from "./pages/Members/pages/EditMember";
 import MemberList from "./pages/Members/pages/MemberList";
 import PageMember from "./pages/Members/pages/PageMember";
+import UserTable from "./pages/UserTable/UserTable";
+import MemberPayment from "./pages/Members/components/MemberPayment";
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -43,11 +45,14 @@ function App() {
             <Route element={<PrivateRoute />}>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/members" element={<MemberList />} />
+              <Route path="/members/create" element={<CreateMember />} />
               <Route path="/members/edit/:id" element={<EditMember />} />
               <Route path="/members/page/:id" element={<PageMember />} />
+              <Route path="/members/payment/:id" element={<MemberPayment />} />
               <Route path="/payment" element={<Payment />} />
               <Route path="/plans" element={<Plans />} />
               <Route path="/settings" element={<Settings />} />
+              <Route path="/users" element={<UserTable />} />
               <Route path="/user/create" element={<HandleUser />} />
               <Route path="/users/edit/:id" element={<HandleUser />} />
               <Route

@@ -1,26 +1,19 @@
-[
-    {
-        "id": 1,
-        "name": "Dashboard",
-        "icon": "ChartBarIcon",
-        "url": "/dashboard"
-    },
-    {
-        "id": 2,
-        "name": "Membros",
-        "icon": "UserGroupIcon",
-        "url": "/members"
-    },
-    {
-        "id": 3,
-        "name": "Pagamentos",
-        "icon": "BanknotesIcon",
-        "url": "/payment"
-    },
-    {
-        "id": 4,
-        "name": "Planos",
-        "icon": "BoltIcon",
-        "url": "/plans"
-    }
-]
+    [
+        {
+            "id": 1,
+            "name": "Membros",
+            "icon": "UserGroupIcon",
+            "children": [
+                {
+                    "id": 1,
+                    "name": "Cadastrar membro",
+                    "url": "/members/create"
+                },
+                {
+                    "id": 2,
+                    "name": "Listar membros",
+                    "url": "/members"
+                }
+            ]
+        }
+    ]

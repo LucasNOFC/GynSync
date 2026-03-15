@@ -1,36 +1,40 @@
-import { NavLink } from "react-router-dom";
+import { useState } from "react";
+import SideMenuLink from "../../../SideMenuLink";
 
-const SideMenuItemList = ({ itemName, url, ItemIcon }) => {
+const SideMenuItemList = ({ itemName, ItemIcon, childrenLinks }) => {
+  const [open, setOpen] = useState(false);
+
+  function toggleMenu() {
+    setOpen((prev) => !prev);
+  }
+
   return (
-    <NavLink
-      to={url}
-      className={({ isActive }) =>
-        `flex items-center gap-4 p-3 w-full rounded-lg border-2 transition-all
-         ${
-           isActive
-             ? "bg-yellow-400/20 border-yellow-400"
-             : "border-transparent hover:bg-zinc-800"
-         }`
-      }
-    >
-      {({ isActive }) => (
-        <>
-          <ItemIcon
-            className={`w-6 h-6 ${
-              isActive ? "text-yellow-300" : "text-gray-400"
-            }`}
-          />
-
-          <span
-            className={`text-sm font-medium ${
-              isActive ? "text-yellow-300" : "text-gray-300"
-            }`}
-          >
+    <div>
+      <button
+        onClick={toggleMenu}
+        className="w-full p-2 rounded cursor-pointer"
+      >
+        <div className="flex items-center gap-5">
+          <ItemIcon className="w-6 h-6 text-yellow-300" />
+          <span className="text-sm font-medium text-yellow-300">
             {itemName}
           </span>
-        </>
+        </div>
+      </button>
+
+      {open && (
+        <div className="ml-8 mt-2 flex flex-col gap-2">
+          {childrenLinks.map((link) => (
+            <SideMenuLink
+              key={link.id}
+              Icon={ItemIcon}
+              text={link.name}
+              url={link.url}
+            />
+          ))}
+        </div>
       )}
-    </NavLink>
+    </div>
   );
 };
 

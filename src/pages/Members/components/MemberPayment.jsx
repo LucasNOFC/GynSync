@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { api } from "../../../services/api";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import Loading from "../../../components/Loading";
 import Error from "../../../components/Error";
@@ -8,6 +8,7 @@ import Error from "../../../components/Error";
 const MemberPayment = () => {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const [member, setMember] = useState({});
   const [loading, setLoading] = useState(false);
   const [memberName, setMemberName] = useState("");
@@ -21,17 +22,24 @@ const MemberPayment = () => {
         paid_at: data.paid_at,
       });
 
-      showContainer();
-    } catch {
-      setError("Erro ao registrar pagamento");
+      showContainer(setSuccess);
+    } catch (err) {
+      if (err.response?.data?.errors?.payment?.[0]) {
+        setError(true);
+        setErrorMessage(err.response.data.message);
+      } else {
+        setError(true);
+        setErrorMessage("Erro ao registrar o pagamento.");
+      }
+      showContainer(setError);
     }
   };
 
-  const showContainer = () => {
-    setSuccess(true);
+  const showContainer = (setter) => {
+    setter(true);
 
     setTimeout(() => {
-      setSuccess(false);
+      setter(false);
     }, 3000);
   };
 
@@ -85,10 +93,6 @@ const MemberPayment = () => {
     return <Loading />;
   }
 
-  if (error) {
-    return <Error error={error} />;
-  }
-
   return (
     <div className="bg-[#1f1f1f] w-120 rounded-2xl">
       <div
@@ -105,6 +109,22 @@ const MemberPayment = () => {
             `}
       >
         Pagamento registrado com sucesso!
+      </div>
+
+      <div
+        className={`
+              absolute bottom-0 right-0 p-3 m-5
+              bg-red-800 rounded-2xl font-bold text-gray-200
+              shadow-[7px_12px_19px_2px_rgba(0,_0,_0,_0.17)]
+              transition-all duration-500 ease-out
+              ${
+                error
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-2 pointer-events-none"
+              }
+            `}
+      >
+        {errorMessage}
       </div>
 
       <div className="bg-[#1f1f1f] p-5 rounded-2xl">

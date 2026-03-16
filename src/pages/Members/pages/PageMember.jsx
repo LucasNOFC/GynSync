@@ -18,7 +18,9 @@ const PageMember = () => {
   useEffect(() => {
     const fetchMember = async () => {
       const res = await api.get(`/members/${id}`);
+      
       const data = res.data.data;
+
 
       setMember(data);
       setLoading(false);
@@ -28,7 +30,7 @@ const PageMember = () => {
       const formattedDate = createdDate.toLocaleDateString("pt-BR");
 
       const newDueDay = new Date(createdDate);
-      newDueDay.setMonth(createdDate.getMonth() + 1);
+      newDueDay.setMonth(createdDate.getMonth() + data.payments_count);
 
       const memberPayment = parseFloat(data.plan.price) * data.payments_count;
 

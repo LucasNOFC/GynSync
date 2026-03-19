@@ -6,6 +6,7 @@ import MemberContacts from "../components/MemberContacts";
 import Loading from "../../../components/Loading";
 import MemberCardInfo from "../components/MemberCardInfo";
 import MemberHandler from "../components/MemberHandler";
+import MemberPaymentTable from "../components/MemberPaymentTable";
 
 const PageMember = () => {
   const { id } = useParams();
@@ -73,7 +74,9 @@ const PageMember = () => {
               desc={`Total de ${member.payments_count} pagamento(s)`}
             />
           </div>
-          <div className=""></div>
+          <div className="">
+            <MemberPaymentTable/>
+          </div>
         </div>
       </div>
     </div>

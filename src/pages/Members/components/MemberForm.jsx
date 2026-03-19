@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { get, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { api } from "../../../services/api";
 
 const MemberForm = ({ user, id }) => {
@@ -99,7 +99,7 @@ const MemberForm = ({ user, id }) => {
       <div className="p-3 flex flex-col items-center">
         <div
           className={`
-              absolute bottom-0 right-0 p-3 m-5
+              absolute top-full p-3 m-5
               bg-green-800 rounded-2xl font-bold text-gray-200
               shadow-[7px_12px_19px_2px_rgba(0,_0,_0,_0.17)]
               transition-all duration-500 ease-out

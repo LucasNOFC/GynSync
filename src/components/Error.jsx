@@ -1,11 +1,12 @@
-import React from 'react'
+import { ExclamationTriangleIcon } from "@heroicons/react/24/solid";
 
-const Error = ({error}) => {
+const Error = ({ message }) => {
   return (
-    <div className="text-4xl text-white font-semibold absolute top-[55%] left-[55%] -translate-x-1/2 -translate-y-1/2 p-5">
-      <p>{error}</p>
+    <div className="p-5 bg-blue-950 text-[#f87171] rounded-lg flex items-center">
+      <ExclamationTriangleIcon className="w-8 h-8 inline-block mr-2" />
+      <p>{message}</p>
     </div>
-  )
-}
+  );
+};
 
-export default Error
+export default Error;

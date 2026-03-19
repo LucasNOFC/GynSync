@@ -15,5 +15,22 @@
                     "url": "/members"
                 }
             ]
+        },
+        {
+            "id": 2,
+            "name": "Planos",
+            "icon": "GlobeAmericasIcon",
+            "children": [
+                {
+                    "id": 1,
+                    "name": "Criar plano",
+                    "url": "/plans/create"
+                },
+                {
+                    "id": 2,
+                    "name": "Listar planos",
+                    "url": "/plans"
+                }
+            ]
         }
     ]

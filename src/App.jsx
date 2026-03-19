@@ -4,7 +4,7 @@ import Login from "./pages/Login/Login";
 import Header from "./components/Header/Header";
 import PrivateRoute from "./routes/PrivateRoutes";
 import Payment from "./pages/Payment/Payment";
-import Plans from "./pages/Plans/Plans";
+import Plans from "./pages/Plans/PlansForm";
 import Settings from "./pages/Settings/Settings";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
@@ -16,6 +16,9 @@ import MemberList from "./pages/Members/pages/MemberList";
 import PageMember from "./pages/Members/pages/PageMember";
 import UserTable from "./pages/UserTable/UserTable";
 import MemberPayment from "./pages/Members/components/MemberPayment";
+import PlanForm from "./pages/Plans/PlansForm";
+import PlansTable from "./pages/Plans/PlansTable";
+import PlansForm from "./pages/Plans/PlansForm";
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -49,8 +52,10 @@ function App() {
               <Route path="/members/edit/:id" element={<EditMember />} />
               <Route path="/members/page/:id" element={<PageMember />} />
               <Route path="/members/payment/:id" element={<MemberPayment />} />
+              <Route path="/plans" element={<PlansTable />} />
+              <Route path="/plans/create" element={<PlansForm />} />
+              <Route path="/plans/edit/:id" element={<PlansForm />} />
               <Route path="/payment" element={<Payment />} />
-              <Route path="/plans" element={<Plans />} />
               <Route path="/settings" element={<Settings />} />
               <Route path="/users" element={<UserTable />} />
               <Route path="/user/create" element={<HandleUser />} />

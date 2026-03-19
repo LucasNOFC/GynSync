@@ -94,10 +94,10 @@ const MemberPayment = () => {
   }
 
   return (
-    <div className="bg-[#1f1f1f] w-120 rounded-2xl">
+    <>
       <div
         className={`
-              absolute bottom-0 right-0 p-3 m-5
+              fixed bottom-5 right-5 p-3 m-5
               bg-green-800 rounded-2xl font-bold text-gray-200
               shadow-[7px_12px_19px_2px_rgba(0,_0,_0,_0.17)]
               transition-all duration-500 ease-out
@@ -113,7 +113,7 @@ const MemberPayment = () => {
 
       <div
         className={`
-              absolute bottom-0 right-0 p-3 m-5
+              fixed bottom-5 right-5 p-3 m-5
               bg-red-800 rounded-2xl font-bold text-gray-200
               shadow-[7px_12px_19px_2px_rgba(0,_0,_0,_0.17)]
               transition-all duration-500 ease-out
@@ -126,65 +126,64 @@ const MemberPayment = () => {
       >
         {errorMessage}
       </div>
-
-      <div className="bg-[#1f1f1f] p-5 rounded-2xl">
-        <p className="text-orange-400 font-semibold tracking-wider">
-          NOVA ENTRADA
-        </p>
-        <h1 className="text-zinc-200 text-2xl font-semibold tracking-wide">
-          Registrar pagamento
-        </h1>
-        <p className="text-zinc-600 ">
-          Revise informações do membro {memberName}
-        </p>
-      </div>
-
-      <form className="bg-[#1a1a1a] p-5" onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex gap-2 mb-5">
-          <div className="flex flex-col gap-2">
-            <span className="text-zinc-500 font-semibold tracking-wider">
-              NOME DO MEMBRO
-            </span>
-            <input
-              value={member?.name}
-              className="p-2 border-2 pl-5 text-zinc-400 rounded-2xl bg-[#262626] border-[#302d2d]"
-              readOnly
-            />
-          </div>
-          <div className="flex flex-col gap-2">
-            <span className="text-zinc-500 font-semibold tracking-wider">
-              VALOR DO PAGAMENTO
-            </span>
-            <input
-              {...register("payment", {
-                required: "O pagamento é obrigatório",
-              })}
-              type="text"
-              className="p-2 border-2 pl-5  rounded-2xl text-zinc-400 bg-[#262626] border-[#302d2d]"
-              readOnly
-            />
-          </div>
+      <div className="bg-[#1f1f1f] w-120 rounded-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="bg-[#1f1f1f] p-5 rounded-2xl">
+          <p className="text-orange-400 font-semibold tracking-wider">
+            NOVA ENTRADA
+          </p>
+          <h1 className="text-zinc-200 text-2xl font-semibold tracking-wide">
+            Registrar pagamento
+          </h1>
+          <p className="text-zinc-600 ">
+            Revise informações do membro {memberName}
+          </p>
         </div>
-
-        <div className="flex flex-col gap-3">
-          <div className="flex flex-col">
+        <form className="bg-[#1a1a1a] p-5" onSubmit={handleSubmit(onSubmit)}>
+          <div className="flex gap-2 mb-5">
             <div className="flex flex-col gap-2">
-              <span className="text-zinc-600 font-bold tracking-wider">
-                DATA DE PAGAMENTO
+              <span className="text-zinc-500 font-semibold tracking-wider">
+                NOME DO MEMBRO
               </span>
               <input
-                {...register("paid_at")}
-                type="date"
-                className="p-2 border-2 pl-5 rounded-2xl text-zinc-400 bg-[#262626] border-[#302d2d]"
+                value={member?.name}
+                className="p-2 border-2 pl-5 text-zinc-400 rounded-2xl bg-[#262626] border-[#302d2d]"
+                readOnly
+              />
+            </div>
+            <div className="flex flex-col gap-2">
+              <span className="text-zinc-500 font-semibold tracking-wider">
+                VALOR DO PAGAMENTO
+              </span>
+              <input
+                {...register("payment", {
+                  required: "O pagamento é obrigatório",
+                })}
+                type="text"
+                className="p-2 border-2 pl-5  rounded-2xl text-zinc-400 bg-[#262626] border-[#302d2d]"
+                readOnly
               />
             </div>
           </div>
-        </div>
-        <button className="p-3 bg-yellow-500 w-full text-center text-white font-bold mt-5 rounded-2xl cursor-pointer hover:bg-yellow-600 transition-colors">
-          Registrar pagamento
-        </button>
-      </form>
-    </div>
+          <div className="flex flex-col gap-3">
+            <div className="flex flex-col">
+              <div className="flex flex-col gap-2">
+                <span className="text-zinc-600 font-bold tracking-wider">
+                  DATA DE PAGAMENTO
+                </span>
+                <input
+                  {...register("paid_at")}
+                  type="date"
+                  className="p-2 border-2 pl-5 rounded-2xl text-zinc-400 bg-[#262626] border-[#302d2d]"
+                />
+              </div>
+            </div>
+          </div>
+          <button className="p-3 bg-yellow-500 w-full text-center text-white font-bold mt-5 rounded-2xl cursor-pointer hover:bg-yellow-600 transition-colors">
+            Registrar pagamento
+          </button>
+        </form>
+      </div>
+    </>
   );
 };
 

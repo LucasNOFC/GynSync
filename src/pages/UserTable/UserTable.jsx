@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { api } from "../../services/api";
 import UserColumn from "./UserColumn";
+import Loading from "../../components/Loading";
 
 const UserTable = ({ getUsers, getAdmins }) => {
   const [users, setUsers] = useState([]);
@@ -52,7 +53,7 @@ const UserTable = ({ getUsers, getAdmins }) => {
   };
 
   if (loading) {
-    return <p className="text-white text-3xl font-semibold">Carregando...</p>;
+    return <Loading />;
   }
 
   return (
